@@ -9,7 +9,7 @@ fastapi==0.123.8
 h11==0.16.0
 idna==3.11
 # Editable install with no version control (iop-sdk-python==1.1.0)
--e /home/ec2-user/iop-sdk
+-e /home/ec2-user/axent-apis/axent-apis
 pydantic==2.12.5
 pydantic_core==2.41.5
 python-dotenv==1.2.1
@@ -19,3 +19,5 @@ typing-inspection==0.4.2
 typing_extensions==4.15.0
 urllib3==2.5.0
 uvicorn==0.38.0
+boto3>=1.34.0
+Pillow>=10.0.0
