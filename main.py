@@ -66,6 +66,7 @@ class AllProductsRequest(BaseModel):
 
 class ImageProcessRequest(BaseModel):
     image_url: str
+    variant_id: str = "product"
     quality: int = 85  # WebP quality (1-100)
 
 
@@ -221,6 +222,7 @@ def process_image(request: ImageProcessRequest):
     Download an image from URL, convert to WebP format, and upload to S3.
     
     - **image_url**: URL of the image to process
+    - **variant_id**: Product variant ID for file naming
     - **quality**: WebP quality (1-100, default: 85)
     
     Returns the public URL of the processed WebP image on S3.
@@ -235,8 +237,8 @@ def process_image(request: ImageProcessRequest):
         
         # Generate timestamp for filenames
         timestamp = int(time.time() * 1000)  # milliseconds for uniqueness
-        raw_filename = f"images/{timestamp}_raw"
-        processed_filename = f"images/{timestamp}_processed.webp"
+        raw_filename = f"images/{request.variant_id}_{timestamp}_raw"
+        processed_filename = f"images/{request.variant_id}_{timestamp}_processed.webp"
         
         # Download image from URL with headers to mimic a browser
         headers = {
